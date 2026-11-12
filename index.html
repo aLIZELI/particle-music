@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#04050a">
+  <title>粒子音乐 · Particle Music</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='5' fill='%2372e8ff'/%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%23a78bfa' stroke-width='1.5' opacity='.7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="stage" aria-label="粒子可视化画布"></main>
+
+  <!-- 启动遮罩 -->
+  <div id="overlay" class="overlay">
+    <div class="panel">
+      <p class="kicker">PARTICLE&nbsp;MUSIC</p>
+      <h1>粒子音乐</h1>
+      <p class="lede">把声音拆成频率，再喂给一群光点。<br>选一首歌，或者让麦克风听见房间。</p>
+
+      <div class="actions">
+        <button id="btn-demo" class="btn btn-primary" type="button">
+          <span class="ico">▶</span> 听一段内置演奏
+        </button>
+        <button id="btn-file" class="btn" type="button">
+          <span class="ico">♪</span> 选择本地音频
+        </button>
+        <button id="btn-mic" class="btn" type="button">
+          <span class="ico">◉</span> 开启麦克风
+        </button>
+        <input id="file-input" type="file" accept="audio/*" hidden>
+      </div>
+
+      <p class="drop-hint">也可以把音频文件直接拖进窗口</p>
+      <p id="error" class="error" role="alert" hidden></p>
+      <p class="credit">p5.js · Web Audio API · 无需安装，本地运行</p>
+    </div>
+  </div>
+
+  <!-- 运行时工具栏 -->
+  <div id="toolbar" class="toolbar" hidden>
+    <span id="track-name" class="track">内置演奏</span>
+    <span class="sep" aria-hidden="true"></span>
+    <button type="button" data-act="pause" title="暂停 / 继续（空格）" aria-label="暂停">❚❚</button>
+    <button type="button" data-act="palette" title="切换配色（1-4）" aria-label="切换配色">◐</button>
+    <button type="button" data-act="snapshot" title="保存画面（S）" aria-label="保存画面">⤓</button>
+    <button type="button" data-act="fullscreen" title="全屏（F）" aria-label="全屏">⛶</button>
+    <button type="button" data-act="change" title="更换音源" aria-label="更换音源">↻</button>
+  </div>
+
+  <div id="keys" class="keys" hidden>
+    <span>空格 暂停</span><span>1-4 配色</span><span>拖拽换歌</span><span>S 存图</span><span>F 全屏</span><span>H 隐藏界面</span>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <p style="color:#cfd6e6;font-family:sans-serif;padding:2rem">这个玩具需要 JavaScript 才能让粒子动起来。</p>
+  </noscript>
+
+  <script src="vendor/p5.min.js"></script>
+  <script src="js/audio-engine.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/sketch.js"></script>
+</body>
+</html>
