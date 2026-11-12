@@ -13,11 +13,32 @@
 
 ![macOS 桌面版](docs/native-bar.jpg)
 
+### 直接下载
+
+去 [Releases](https://github.com/aLIZELI/particle-music/releases) 下载最新的
+`ParticleBar-0.1.0.zip`，解压后把 `ParticleBar.app` 拖进 `/Applications` 就能用。
+包是 **Apple Silicon + Intel 通用**，要求 macOS 14+。
+
+这个包没有 Apple Developer ID 签名和公证，首次打开会被 Gatekeeper 拦下来。
+两种办法任选：
+
+- 右键点 App →「打开」→ 再点一次「打开」；
+- 或者终端执行：
+
+```bash
+xattr -dr com.apple.quarantine /Applications/ParticleBar.app
+```
+
+打开后点菜单栏的波形图标 →「音源」→「系统声音」，按提示授予
+「屏幕与系统音频录制」权限即可。
+
+### 从源码构建
+
 ```bash
 cd native && ./build.sh && open build/ParticleBar.app
 ```
 
-首次启动需要在「系统设置 → 隐私与安全性 → 屏幕与系统音频录制」里允许 ParticleBar。
+发 Release 用的通用包：`./build.sh --universal`。
 
 ## 快速开始
 
@@ -140,3 +161,9 @@ python3 -m http.server 8000
 - 换成 WEBGL 着色器版本，粒子数量可以上十万
 - 接 MIDI 键盘 / 打击垫
 - 做成桌面屏保或菜单栏小挂件
+
+## License
+
+[MIT](LICENSE) © 2026 aLIZELI
+
+意思是：你可以随便用、改、再发布，保留版权声明即可；作者不对使用后果负责。

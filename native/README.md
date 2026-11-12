@@ -5,13 +5,27 @@ ScreenCaptureKit + Accelerate，没有 Electron，也不用装 BlackHole 之类�
 
 ![预览](../docs/native-bar.jpg)
 
+## 下载
+
+不自己编译的话，去 [Releases](https://github.com/aLIZELI/particle-music/releases)
+下载 `ParticleBar-0.1.0.zip`，解压后把 `ParticleBar.app` 拖进 `/Applications`。
+
+未公证的 App 首次打开会被 Gatekeeper 拦住：
+
+```bash
+# 方法一：右键 App → 打开 → 再点“打开”
+# 方法二：
+xattr -dr com.apple.quarantine /Applications/ParticleBar.app
+```
+
 ## 构建和运行
 
 需要 macOS 14+，以及 Xcode 命令行工具（`xcode-select --install`）。
 
 ```bash
 cd native
-./build.sh
+./build.sh              # 只构建当前架构
+./build.sh --universal  # Apple Silicon + Intel 通用包
 open build/ParticleBar.app
 ```
 
@@ -95,7 +109,7 @@ native/
 
 ## 已知限制
 
-- 只支持 macOS 14+；每块屏幕各显示一条光带（内容相同）。
+- 只支持 macOS 14+（通用包同时支持 Apple Silicon 和 Intel）；每块屏幕各显示一条光带（内容相同）。
 - 系统声音抓取依赖屏幕录制权限；如果授权后仍失败，退出重开。
 - 本地是 ad-hoc 签名：重新编译后二进制变化，macOS 可能要求重新授权。
   把 App 放到固定位置（比如 `/Applications`）再授权会稳定一些。
